@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const Dotenv = require("dotenv-webpack");
-const { plugin } = require("postcss");
 
 module.exports = {
   entry: "./src/index.js",
