@@ -3,20 +3,26 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert("Events", [
-      {
-        title: "Test Ivent 2024",
-        description: "This is a testing event",
-        event_date: new Date("2024-11-11"),
-        organizer: "Me=)",
-      },
-      {
-        title: "Another Test Ivent 2024",
-        description: "This is a testing event",
-        event_date: new Date("2024-11-16"),
-        organizer: "It's me)",
-      },
-    ]);
+    function getRandomDate(start, end) {
+      return new Date(
+        start.getTime() + Math.random() * (end.getTime() - start.getTime())
+      );
+    }
+
+    const events = [];
+    for (let i = 0; i < 20; i++) {
+      events.push({
+        title: "Amazing Ivent 2024",
+        description: "This is an amazing event!",
+        event_date: getRandomDate(
+          new Date("2024-09-30"),
+          new Date("2025-05-31")
+        ),
+        organizer: "John Smith",
+      });
+    }
+
+    await queryInterface.bulkInsert("Events", events, {});
   },
 
   async down(queryInterface, Sequelize) {
