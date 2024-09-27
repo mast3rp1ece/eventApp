@@ -12,8 +12,10 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
+        setLoading(true);
         const res = await getMethod("/events");
         setEvents(res.data);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -31,6 +33,10 @@ const Events = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  if (loading) {
+    return <div className="bg-gray-800 min-h-screen">Loading...</div>;
+  }
+
   return (
     <div className="bg-gray-800 p-7 min-h-screen flex flex-col">
       <h1 className="text-white text-4xl mb-5 text-center">Events</h1>
@@ -40,11 +46,10 @@ const Events = () => {
             return (
               <li
                 key={event.id}
-                className="flex flex-col border border-gray-500 hover:border-gray-600 transition p-3 text-white gap-5 bg-gray-900"
+                className="flex flex-col border border-gray-500 hover:border-gray-600 transition p-5 text-white gap-5 bg-gray-900"
               >
                 <h2 className="text-2xl">{event.title}</h2>
                 <h3 className="italic text-gray-300">{event.description}</h3>
-                <p>Orginized by: "{event.organizer}"</p>
                 <p className="font-mono">
                   {new Date(event.event_date).toLocaleDateString("en-GB", {
                     year: "numeric",
@@ -55,8 +60,12 @@ const Events = () => {
                     timeZone: "Europe/Kiev",
                   })}
                 </p>
-                <div className="flex justify-between [&>*]:text-indigo-500 hover:text-indigo-300 [&>*]:transition">
-                  <Link className="hover:text-indigo-300" to="#">
+                <p className="mb-10">Organized by: "{event.organizer}"</p>
+                <div className="flex justify-between [&>*]:text-indigo-500 hover:text-indigo-300 [&>*]:transition mt-auto">
+                  <Link
+                    className="hover:text-indigo-300"
+                    to={`${event.id}/register`}
+                  >
                     Register
                   </Link>
                   <Link className="hover:text-indigo-300" to="#">
