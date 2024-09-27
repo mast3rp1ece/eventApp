@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const Dotenv = require("dotenv-webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -40,6 +41,14 @@ module.exports = {
       // favicon: path.resolve(__dirname, "src", "favicon.svg"),
     }),
     new Dotenv(),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "_redirects"),
+          to: path.resolve(__dirname, "dist"),
+        },
+      ],
+    }),
   ],
   devServer: {
     historyApiFallback: true,
