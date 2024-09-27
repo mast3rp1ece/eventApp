@@ -23,7 +23,7 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
       },
-      orginizer: {
+      organizer: {
         type: Sequelize.STRING,
         allowNull: false,
       },

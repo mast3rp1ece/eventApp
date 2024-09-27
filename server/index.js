@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:9000",
+    origin: ["http://localhost:9000", "https://test-event-app.netlify.app"],
     methods: ["POST", "GET"],
   })
 );

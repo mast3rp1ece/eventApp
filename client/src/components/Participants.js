@@ -8,7 +8,7 @@ const Participants = () => {
   const [event, setEvent] = useState({});
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [participantsPerPage, setEventsPerPage] = useState(12);
+  const [participantsPerPage] = useState(12);
   //   console.log(id);
 
   useEffect(() => {

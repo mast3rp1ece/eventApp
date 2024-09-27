@@ -7,7 +7,7 @@ const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [eventsPerPage, setEventsPerPage] = useState(8);
+  const [eventsPerPage] = useState(8);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -29,7 +29,9 @@ const Events = () => {
 
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
-  const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
+  const currentEvents = Array.isArray(events)
+    ? events.slice(indexOfFirstEvent, indexOfLastEvent)
+    : [];
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -44,7 +46,7 @@ const Events = () => {
       <h1 className="text-white text-4xl mb-5 text-center">Events</h1>
       <div className="border border-gray-500 flex flex-col flex-grow">
         <ul className="grid p-5 gap-10 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
-          {currentEvents.map((event) => {
+          {currentEvents?.map((event) => {
             return (
               <li
                 key={event.id}
