@@ -37,7 +37,9 @@ const Events = () => {
 
   if (loading) {
     return (
-      <div className="text-white bg-gray-800 min-h-screen">Loading...</div>
+      <div className="flex justify-center items-center h-full">
+        <div className="text-white bg-gray-800">Loading...</div>
+      </div>
     );
   }
 
