@@ -1,10 +1,10 @@
 import React from "react";
 import clsx from "clsx";
 
-const Pagination = ({ eventsPerPage, totalEvents, paginate, currentPage }) => {
+const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalEvents / eventsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
 

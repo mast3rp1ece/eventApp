@@ -46,11 +46,11 @@ const Participants = () => {
       >
         <span className="mr-2">&#8592;</span>Back
       </Link>
-      <h1 className="text-white text-4xl mb-5 text-center">
+      <h1 className="text-white text-4xl mb-5 text-center mt-10">
         "{event.title}" participants
       </h1>
       <div className="border border-gray-500 flex flex-col flex-grow">
-        <ul className="grid p-5 gap-10 grid-cols-4">
+        <ul className="grid p-5 gap-10 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
           {currentParticipants?.map((participant) => {
             return (
               <li
@@ -77,8 +77,8 @@ const Participants = () => {
         </ul>
         <div className="mt-auto">
           <Pagination
-            eventsPerPage={participantsPerPage}
-            totalEvents={event.Participants?.length}
+            postsPerPage={participantsPerPage}
+            totalPosts={event.Participants?.length}
             paginate={paginate}
             currentPage={currentPage}
           />

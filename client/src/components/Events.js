@@ -23,9 +23,9 @@ const Events = () => {
     fetchEvents();
   }, []);
 
-  useEffect(() => {
-    console.log("Events:", events);
-  }, [events]);
+  // useEffect(() => {
+  //   console.log("Events:", events);
+  // }, [events]);
 
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
@@ -43,7 +43,7 @@ const Events = () => {
     <div className="bg-gray-800 p-7 min-h-screen flex flex-col">
       <h1 className="text-white text-4xl mb-5 text-center">Events</h1>
       <div className="border border-gray-500 flex flex-col flex-grow">
-        <ul className="grid p-5 gap-10 grid-cols-4">
+        <ul className="grid p-5 gap-10 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
           {currentEvents.map((event) => {
             return (
               <li
@@ -83,8 +83,8 @@ const Events = () => {
         </ul>
         <div className="mt-auto">
           <Pagination
-            eventsPerPage={eventsPerPage}
-            totalEvents={events.length}
+            postsPerPage={eventsPerPage}
+            totalPosts={events.length}
             paginate={paginate}
             currentPage={currentPage}
           />
