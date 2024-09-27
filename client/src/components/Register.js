@@ -7,6 +7,7 @@ const Register = () => {
   let { id } = useParams();
   //   console.log(id);
 
+  const [loading, setLoading] = useState(false);
   const [event, setEvent] = useState({});
   const [formData, setFormData] = useState({
     fullName: "",
@@ -20,9 +21,10 @@ const Register = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
+        setLoading(true);
         const res = await getMethod(`/events/${id}`);
-        console.log(res.data);
         setEvent(res.data);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -61,6 +63,14 @@ const Register = () => {
       console.log(err);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <div className="text-white bg-gray-800">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div
