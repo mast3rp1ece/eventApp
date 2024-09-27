@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { postMethod } from "../api/api";
+import { postMethod, getMethod } from "../api/api";
 
 const Register = () => {
   let { id } = useParams();
-  console.log(id);
+  //   console.log(id);
 
+  const [event, setEvent] = useState({});
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -15,6 +16,19 @@ const Register = () => {
   });
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const res = await getMethod(`/events/${id}`);
+        console.log(res.data);
+        setEvent(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchEvent();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -48,10 +62,6 @@ const Register = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
   return (
     <div
       className="flex flex-col justify-center items-center
@@ -63,7 +73,7 @@ const Register = () => {
       >
         <span className="mr-2">&#8592;</span>Back
       </Link>
-      <h2 className="text-2xl mb-5">Event registration</h2>
+      <h2 className="text-2xl mb-5">"{event.title}" Event registration</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col [&>input]:px-3 [&>input]:py-2">
           <label htmlFor="fullName">Full Name</label>
