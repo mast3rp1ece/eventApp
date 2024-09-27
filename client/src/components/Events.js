@@ -34,7 +34,9 @@ const Events = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (loading) {
-    return <div className="bg-gray-800 min-h-screen">Loading...</div>;
+    return (
+      <div className="text-white bg-gray-800 min-h-screen">Loading...</div>
+    );
   }
 
   return (
@@ -68,7 +70,10 @@ const Events = () => {
                   >
                     Register
                   </Link>
-                  <Link className="hover:text-indigo-300" to="#">
+                  <Link
+                    className="hover:text-indigo-300"
+                    to={`${event.id}/participants`}
+                  >
                     View
                   </Link>
                 </div>

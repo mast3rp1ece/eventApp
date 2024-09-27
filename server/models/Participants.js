@@ -31,4 +31,7 @@ const Participants = sequelize.define("Participants", {
   },
 });
 
+Events.hasMany(Participants, { foreignKey: "event_id" });
+Participants.belongsTo(Events, { foreignKey: "event_id" });
+
 module.exports = Participants;
